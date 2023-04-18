@@ -27,4 +27,4 @@ jobs:
   
   setupCI:
     needs: second-job
-    uses: victoria-vvargas/ruw-demo/.github/workflows/standard-pipeline.yml@main
+    uses: victoria-vvargas/main-ruw-demo/.github/workflows/standard-pipeline.yml@main

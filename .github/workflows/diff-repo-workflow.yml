@@ -1,0 +1,30 @@
+name: Different repo using reusable workflow
+
+on:
+  push:
+   branches: [main,develop,feature/**]
+
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  one-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run one line script
+        run: echo Hi, this workflow is using a reusable workflow in another repo!!
+
+  second-job:
+    runs-on: ubuntu-latest
+    needs: one-job
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run one line script
+        run: echo This is a second job in the workflow!!
+  
+  setupCI:
+    needs: second-job
+    uses: victoria-vvargas/ruw-demo/.github/workflows/standard-pipeline.yml@main
